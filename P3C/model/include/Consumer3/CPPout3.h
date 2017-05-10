@@ -29,8 +29,11 @@ public:
   void execute();
 
 private:
-  // protected region additional class members or functions on begin
 
+  // Class variables
+  bool VarIn;
+
+  // protected region additional class members or functions on begin
   // protected region additional class members or functions end
 };
 

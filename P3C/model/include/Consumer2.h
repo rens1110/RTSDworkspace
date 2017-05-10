@@ -27,16 +27,16 @@ class Consumer2 : public Sequential
 
 public:
   // Define constructor and destructor
-  Consumer2(ChannelOut<int> *C);
+  Consumer2(ChannelOut<bool> *C);
   virtual ~Consumer2();
 
 private:
 
   // Class variables
-  int VarIn;
+  bool VarIn;
 
   // Model objects
-  Reader<int> *myC2_R_C;
+  Reader<bool> *myC2_R_C;
   CPPout2::CPPout2 *myCPPout2;
 
 

@@ -20,9 +20,9 @@ MainModel::MainModel() :
   SETNAME(this, "MainModel");
 
   // Initialize channels
-  myProducerC1_to_Consumer1CChannel = new UnbufferedChannel<int, One2In, Out2One>();
-  myProducerC2_to_Consumer2CChannel = new UnbufferedChannel<int, One2In, Out2One>();
-  myProducerC3_to_Consumer3CChannel = new UnbufferedChannel<int, One2In, Out2One>();
+  myProducerC1_to_Consumer1CChannel = new UnbufferedChannel<bool, One2In, Out2One>();
+  myProducerC2_to_Consumer2CChannel = new UnbufferedChannel<bool, One2In, Out2One>();
+  myProducerC3_to_Consumer3CChannel = new UnbufferedChannel<bool, One2In, Out2One>();
 
   // Initialize model objects
   myConsumer1 = new Consumer1::Consumer1(myProducerC1_to_Consumer1CChannel);
@@ -34,12 +34,27 @@ MainModel::MainModel() :
   myProducer = new Producer::Producer(myProducerC1_to_Consumer1CChannel, myProducerC2_to_Consumer2CChannel, myProducerC3_to_Consumer3CChannel);
   SETNAME(myProducer, "Producer");
 
+  // Set conditions for the guarded objects that are not in a Sequential group
+  AltIfOption<int>* myConsumer1_guard = new AltIfOption<int>(myConsumer1, std::bind(&MainModel::Consumer1GuardEvaluate, this));
+  SETNAME(myConsumer1_guard, "Consumer1-guard");
+  AltIfOption<int>* myConsumer2_guard = new AltIfOption<int>(myConsumer2, std::bind(&MainModel::Consumer2GuardEvaluate, this));
+  SETNAME(myConsumer2_guard, "Consumer2-guard");
+  AltIfOption<int>* myConsumer3_guard = new AltIfOption<int>(myConsumer3, std::bind(&MainModel::Consumer3GuardEvaluate, this));
+  SETNAME(myConsumer3_guard, "Consumer3-guard");
+  // Create ALTERNATIVE group
+  myALTERNATIVE = new Alternative(
+    true,
+    (CSPConstruct *) myConsumer3_guard,
+    (CSPConstruct *) myConsumer2_guard,
+    (CSPConstruct *) myConsumer1_guard,
+    NULL
+  );
+  SETNAME(myALTERNATIVE, "ALTERNATIVE");
+
   // Create PARALLEL group
   myPARALLEL = new Parallel(
     (CSPConstruct *) myProducer,
-    (CSPConstruct *) myConsumer1,
-    (CSPConstruct *) myConsumer2,
-    (CSPConstruct *) myConsumer3,
+    (CSPConstruct *) myALTERNATIVE,
     NULL
   );
   SETNAME(myPARALLEL, "PARALLEL");
@@ -61,6 +76,7 @@ MainModel::~MainModel()
   // protected region destructor end
 
   // Destroy model groups
+  delete myALTERNATIVE;
   delete myPARALLEL;
 
   // Destroy model objects
@@ -76,6 +92,20 @@ MainModel::~MainModel()
 }
 
 
+bool MainModel::Consumer1GuardEvaluate()
+{
+  return ChVar1==true;
+}
+
+bool MainModel::Consumer2GuardEvaluate()
+{
+  return ChVar2==true;
+}
+
+bool MainModel::Consumer3GuardEvaluate()
+{
+  return ChVar3==true;
+}
 
 // protected region additional functions on begin
 // protected region additional functions end

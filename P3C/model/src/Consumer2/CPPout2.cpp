@@ -19,26 +19,26 @@ CPPout2::CPPout2() :
   SETNAME(this, "CPPout2");
 
   // protected region constructor on begin
-
   // protected region constructor end
 }
 
 CPPout2::~CPPout2()
 {
   // protected region destructor on begin
-
   // protected region destructor end
 }
 
 void CPPout2::execute()
 {
   // protected region execute code on begin
-
+	if(VarIn==1)
+	{
+		printf("Consumer 2 \n");
+	}
   // protected region execute code end
 }
 
 // protected region additional functions on begin
-
 // protected region additional functions end
 
 // Close namespace(s)

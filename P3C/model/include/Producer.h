@@ -27,21 +27,21 @@ class Producer : public Sequential
 
 public:
   // Define constructor and destructor
-  Producer(GuardedChannelIn<int> *C1, GuardedChannelIn<int> *C2, GuardedChannelIn<int> *C3);
+  Producer(GuardedChannelIn<bool> *C1, GuardedChannelIn<bool> *C2, GuardedChannelIn<bool> *C3);
   virtual ~Producer();
 
 private:
 
   // Class variables
-  int ChVar1;
-  int ChVar2;
-  int ChVar3;
+  bool ChVar1;
+  bool ChVar2;
+  bool ChVar3;
 
   // Model objects
   CPPin::CPPin *myCPPin;
-  GuardedWriter<int> *myP_W_C1;
-  GuardedWriter<int> *myP_W_C2;
-  GuardedWriter<int> *myP_W_C3;
+  GuardedWriter<bool> *myP_W_C1;
+  GuardedWriter<bool> *myP_W_C2;
+  GuardedWriter<bool> *myP_W_C3;
 
   // Model groups
   Alternative *myALTERNATIVE;

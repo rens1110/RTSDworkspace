@@ -35,10 +35,15 @@ public:
 
 private:
 
+  // Class variables
+  bool ChVar1;
+  bool ChVar2;
+  bool ChVar3;
+
   // Channel definitions
-  UnbufferedChannel<int, One2In, Out2One> *myProducerC1_to_Consumer1CChannel;
-  UnbufferedChannel<int, One2In, Out2One> *myProducerC2_to_Consumer2CChannel;
-  UnbufferedChannel<int, One2In, Out2One> *myProducerC3_to_Consumer3CChannel;
+  UnbufferedChannel<bool, One2In, Out2One> *myProducerC1_to_Consumer1CChannel;
+  UnbufferedChannel<bool, One2In, Out2One> *myProducerC2_to_Consumer2CChannel;
+  UnbufferedChannel<bool, One2In, Out2One> *myProducerC3_to_Consumer3CChannel;
 
   // Model objects
   Consumer1::Consumer1 *myConsumer1;
@@ -47,9 +52,14 @@ private:
   Producer::Producer *myProducer;
 
   // Model groups
+  Alternative *myALTERNATIVE;
   Parallel *myPARALLEL;
 
 
+  // Guard evaluation functions
+  bool Consumer1GuardEvaluate();
+  bool Consumer2GuardEvaluate();
+  bool Consumer3GuardEvaluate();
 
   // protected region additional class members or functions on begin
   // protected region additional class members or functions end

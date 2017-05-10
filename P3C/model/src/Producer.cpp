@@ -14,7 +14,7 @@
 
 namespace MainModel { namespace Producer { 
 
-Producer::Producer(GuardedChannelIn<int> *C1, GuardedChannelIn<int> *C2, GuardedChannelIn<int> *C3) :
+Producer::Producer(GuardedChannelIn<bool> *C1, GuardedChannelIn<bool> *C2, GuardedChannelIn<bool> *C3) :
     Sequential(NULL)
 {
   SETNAME(this, "Producer");
@@ -22,11 +22,11 @@ Producer::Producer(GuardedChannelIn<int> *C1, GuardedChannelIn<int> *C2, Guarded
   // Initialize model objects
   myCPPin = new CPPin::CPPin();
   SETNAME(myCPPin, "CPPin");
-  myP_W_C1 = new GuardedWriter<int>(&ChVar1, C1);
+  myP_W_C1 = new GuardedWriter<bool>(&ChVar1, C1);
   SETNAME(myP_W_C1, "P_W_C1");
-  myP_W_C2 = new GuardedWriter<int>(&ChVar2, C2);
+  myP_W_C2 = new GuardedWriter<bool>(&ChVar2, C2);
   SETNAME(myP_W_C2, "P_W_C2");
-  myP_W_C3 = new GuardedWriter<int>(&ChVar3, C3);
+  myP_W_C3 = new GuardedWriter<bool>(&ChVar3, C3);
   SETNAME(myP_W_C3, "P_W_C3");
 
   // Create ALTERNATIVE group

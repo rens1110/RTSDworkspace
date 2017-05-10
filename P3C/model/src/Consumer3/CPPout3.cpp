@@ -19,26 +19,26 @@ CPPout3::CPPout3() :
   SETNAME(this, "CPPout3");
 
   // protected region constructor on begin
-
   // protected region constructor end
 }
 
 CPPout3::~CPPout3()
 {
   // protected region destructor on begin
-
   // protected region destructor end
 }
 
 void CPPout3::execute()
 {
   // protected region execute code on begin
-
+	if(VarIn==1)
+	{
+		printf("Consumer 3 \n");
+	}
   // protected region execute code end
 }
 
 // protected region additional functions on begin
-
 // protected region additional functions end
 
 // Close namespace(s)

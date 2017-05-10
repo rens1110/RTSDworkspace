@@ -14,13 +14,13 @@
 
 namespace MainModel { namespace Consumer2 { 
 
-Consumer2::Consumer2(ChannelOut<int> *C) :
+Consumer2::Consumer2(ChannelOut<bool> *C) :
     Sequential(NULL)
 {
   SETNAME(this, "Consumer2");
 
   // Initialize model objects
-  myC2_R_C = new Reader<int>(&VarIn, C);
+  myC2_R_C = new Reader<bool>(&VarIn, C);
   SETNAME(myC2_R_C, "C2_R_C");
   myCPPout2 = new CPPout2::CPPout2();
   SETNAME(myCPPout2, "CPPout2");

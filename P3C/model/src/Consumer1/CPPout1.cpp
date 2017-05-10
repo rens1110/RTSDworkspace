@@ -31,6 +31,10 @@ CPPout1::~CPPout1()
 void CPPout1::execute()
 {
   // protected region execute code on begin
+	if(VarIn==1)
+	{
+		printf("Consumer 1 \n");
+	}
   // protected region execute code end
 }
 

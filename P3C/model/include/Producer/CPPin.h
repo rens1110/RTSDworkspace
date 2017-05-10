@@ -29,6 +29,12 @@ public:
   void execute();
 
 private:
+
+  // Class variables
+  bool ChVar1;
+  bool ChVar2;
+  bool ChVar3;
+
   // protected region additional class members or functions on begin
   // protected region additional class members or functions end
 };
