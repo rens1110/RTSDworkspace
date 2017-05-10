@@ -25,7 +25,7 @@ using namespace LUNA::CSP;
 
 namespace MainModel { 
 
-class MainModel : public Parallel
+class MainModel : public Recursion<CSProcess>
 {
 
 public:
@@ -46,6 +46,9 @@ private:
   Consumer122::Consumer122 *myConsumer122;
   Producer12::Producer12 *myProducer12;
   Producer122::Producer122 *myProducer122;
+
+  // Model groups
+  Parallel *myPARALLEL;
 
 
 

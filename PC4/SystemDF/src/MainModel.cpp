@@ -15,7 +15,7 @@
 namespace MainModel { 
 
 MainModel::MainModel() :
-    Parallel(NULL)
+    Recursion<CSProcess>()
 {
   SETNAME(this, "MainModel");
 
@@ -35,12 +35,20 @@ MainModel::MainModel() :
   myProducer122 = new Producer122::Producer122(myProducer122ch12_to_Consumer122ch12Channel, myProducer122ch22_to_Consumer122ch22Channel);
   SETNAME(myProducer122, "Producer122");
 
+  // Create PARALLEL group
+  myPARALLEL = new Parallel(
+    (CSPConstruct *) myProducer122,
+    (CSPConstruct *) myConsumer122,
+    (CSPConstruct *) myProducer12,
+    (CSPConstruct *) myConsumer12,
+    NULL
+  );
+  SETNAME(myPARALLEL, "PARALLEL");
 
-  // Register model objects
-  this->append_child(myProducer122);
-  this->append_child(myConsumer122);
-  this->append_child(myProducer12);
-  this->append_child(myConsumer12);
+  // Register PARALLEL as top-level recursive object
+  setToActivate(myPARALLEL);
+  setEvaluateCondition(true);
+
 
   // protected region constructor on begin
   // protected region constructor end
@@ -52,6 +60,9 @@ MainModel::~MainModel()
 
   // protected region destructor on begin
   // protected region destructor end
+
+  // Destroy model groups
+  delete myPARALLEL;
 
   // Destroy model objects
   delete myProducer122;

@@ -128,9 +128,7 @@
       <compositionalRelations compositeObjects="//@objects.3/@submodel/@objects.3 //@objects.3/@submodel/@objects.4" type="SEQUENTIAL" compositionalGroup="//@objects.3/@submodel/@objects.5"/>
     </submodel>
   </objects>
-  <objects xsi:type="csp:CSPCompositionalGroup" name="PARALLEL" constraints="359,131,552,256" relations="//@compositionalRelations.1 //@compositionalRelations.2 //@compositionalRelations.0">
-    <properties xsi:type="csp:CSPRecursionProperty"/>
-  </objects>
+  <objects xsi:type="csp:CSPCompositionalGroup" name="PARALLEL" constraints="359,131,552,256" relations="//@compositionalRelations.1 //@compositionalRelations.2 //@compositionalRelations.0"/>
   <properties xsi:type="cpc:CPCUnitsProperty">
     <units name="theType" unit="int"/>
   </properties>

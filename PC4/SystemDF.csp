@@ -8,7 +8,7 @@ channel channel_Producer12_P12_W_ch1_to_Consumer12_C12_R_ch1
 channel channel_Producer12_P12_W_ch2_to_Consumer12_C12_R_ch2
 
 -- Processes
-MainModel_PARALLEL = MainModel_Producer122 [| {| channel_Producer122_P122_W_ch12_to_Consumer122_C122_R_ch12 , channel_Producer122_P122_W_ch22_to_Consumer122_C122_R_ch22 |} |] (MainModel_Consumer122 ||| (MainModel_Producer12 [| {| channel_Producer12_P12_W_ch1_to_Consumer12_C12_R_ch1 , channel_Producer12_P12_W_ch2_to_Consumer12_C12_R_ch2 |} |] MainModel_Consumer12))
+MainModel_PARALLEL = if (true) then (MainModel_Producer122 [| {| channel_Producer122_P122_W_ch12_to_Consumer122_C122_R_ch12 , channel_Producer122_P122_W_ch22_to_Consumer122_C122_R_ch22 |} |] (MainModel_Consumer122 ||| (MainModel_Producer12 [| {| channel_Producer12_P12_W_ch1_to_Consumer12_C12_R_ch1 , channel_Producer12_P12_W_ch2_to_Consumer12_C12_R_ch2 |} |] MainModel_Consumer12)) ) ; MainModel_PARALLEL else SKIP
 MainModel_Producer122 = Producer122_SEQUENTIAL
 Producer122_SEQUENTIAL = Producer122_CPP12 ; Producer122_P122_W_ch12 ; Producer122_P122_W_ch22
 Producer122_CPP12 = SKIP
